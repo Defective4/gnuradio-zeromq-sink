@@ -18,4 +18,5 @@ jobs:
       - name: Upload artifact
         with:
           name: gnuradio-zeromq-sink
+          uses: actions/upload-artifact@v3.2.1-node20
           path: target/*.jar
