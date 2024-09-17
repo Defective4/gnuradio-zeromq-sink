@@ -2,10 +2,8 @@
 A Java library to receive ZMQ PUSH messages from GNU Radio flowcharts
 
 ## Features
+- [x] Standard messages (Receiving and sending)
 - [x] RDS messages (from [gr-rds](https://github.com/bastibl/gr-rds))
-
-## Planned
-*No other planned featues yet. [Open an issue](https://github.com/Defective4/gnuradio-zeromq-sink)*
 
 ## Installation
 You can include this library in your `pom.xml` file:
