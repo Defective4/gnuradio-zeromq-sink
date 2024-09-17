@@ -19,8 +19,14 @@ public class RawMessageReceiver implements AutoCloseable {
     private final ZContext ctx;
     private final List<MessageListener> listeners = new CopyOnWriteArrayList<>();
     private final Socket socket;
+    private final boolean bind;
 
     public RawMessageReceiver(String address) {
+        this(address, false);
+    }
+
+    public RawMessageReceiver(String address, boolean bind) {
+        this.bind = bind;
         ctx = new ZContext();
         socket = ctx.createSocket(SocketType.PULL);
         this.address = address;
@@ -46,7 +52,8 @@ public class RawMessageReceiver implements AutoCloseable {
     }
 
     public void start() throws IOException {
-        socket.connect(address);
+        if (bind) socket.bind(address);
+        else socket.connect(address);
         while (!closed) {
             byte[] recv = socket.recv();
             if (recv.length > 0) {

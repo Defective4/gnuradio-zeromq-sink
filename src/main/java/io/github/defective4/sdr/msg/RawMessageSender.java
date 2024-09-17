@@ -9,8 +9,14 @@ public class RawMessageSender implements AutoCloseable {
     private final String address;
     private final ZContext context;
     private final Socket socket;
+    private final boolean bind;
 
     public RawMessageSender(String address) {
+        this(address, false);
+    }
+
+    public RawMessageSender(String address, boolean bind) {
+        this.bind = bind;
         context = new ZContext();
         socket = context.createSocket(SocketType.PUSH);
         this.address = address;
@@ -27,7 +33,8 @@ public class RawMessageSender implements AutoCloseable {
     }
 
     public void start() {
-        socket.bind(address);
+        if (bind) socket.bind(address);
+        else socket.connect(address);
     }
 
 }

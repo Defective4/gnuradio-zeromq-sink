@@ -21,8 +21,14 @@ public class RDSReceiver implements AutoCloseable {
     private final List<RDSListener> listeners = new CopyOnWriteArrayList<>();
     private final Socket socket;
     private String storedRadiotext, storedStation;
+    private final boolean bind;
 
     public RDSReceiver(String address) {
+        this(address, false);
+    }
+
+    public RDSReceiver(String address, boolean bind) {
+        this.bind = bind;
         ctx = new ZContext();
         socket = ctx.createSocket(SocketType.PULL);
         this.address = address;
@@ -64,7 +70,8 @@ public class RDSReceiver implements AutoCloseable {
     }
 
     public void start() throws IOException {
-        socket.connect(address);
+        if (bind) socket.bind(address);
+        else socket.connect(address);
         while (!closed) {
             byte[] recv = socket.recv();
             if (recv.length < 11) continue;
