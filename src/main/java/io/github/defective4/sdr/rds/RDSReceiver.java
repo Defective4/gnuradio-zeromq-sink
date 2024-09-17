@@ -3,6 +3,7 @@ package io.github.defective4.sdr.rds;
 import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
 import java.io.IOException;
+import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
@@ -36,6 +37,10 @@ public class RDSReceiver implements AutoCloseable {
         closed = true;
         socket.close();
         ctx.close();
+    }
+
+    public List<RDSListener> getListeners() {
+        return Collections.unmodifiableList(listeners);
     }
 
     public boolean isAllowDuplicateRadiotextUpdates() {
