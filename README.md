@@ -1,5 +1,5 @@
 # GNU Radio ZeroMQ Sink
-A Java library to receive ZMQ PUSH messages from GNU Radio flowcharts
+A Java library to receive and send ZMQ PULL/PUSH messages from GNU Radio flowcharts
 
 ## Features
 - [x] Standard messages (Receiving and sending)
