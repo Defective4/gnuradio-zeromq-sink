@@ -10,7 +10,7 @@ jobs:
         uses: actions/setup-java@v4.2.2
         with:
           # The Java version to set up. Takes a whole or semver Java version. See examples of supported syntax in README file
-          java-version: 8
+          java-version: 17
           # Java distribution. See the list of supported distributions in README file
           distribution: adopt
       - name: Build with Maven
