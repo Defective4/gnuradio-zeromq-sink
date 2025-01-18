@@ -67,7 +67,6 @@ public class MessagePair {
             wrapper.writeByte(type);
             switch (type) {
                 case 2 -> {
-                    wrapper.writeByte(2);
                     byte[] string = getAsString().getBytes(StandardCharsets.UTF_8);
                     wrapper.writeShort(string.length);
                     wrapper.write(string);

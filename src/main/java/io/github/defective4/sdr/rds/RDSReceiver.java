@@ -15,13 +15,13 @@ public class RDSReceiver implements AutoCloseable {
 
     private final String address;
     private boolean allowDuplicateRadiotextUpdates, allowDuplicateStationUpdates;
+    private final boolean bind;
     private boolean closed;
     private final ZContext ctx;
     private String lastRadiotext, lastStation;
     private final List<RDSListener> listeners = new CopyOnWriteArrayList<>();
     private final Socket socket;
     private String storedRadiotext, storedStation;
-    private final boolean bind;
 
     public RDSReceiver(String address) {
         this(address, false);

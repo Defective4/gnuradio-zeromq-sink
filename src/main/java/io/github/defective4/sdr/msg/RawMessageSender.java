@@ -7,9 +7,9 @@ import org.zeromq.ZMQ.Socket;
 public class RawMessageSender implements AutoCloseable {
 
     private final String address;
+    private final boolean bind;
     private final ZContext context;
     private final Socket socket;
-    private final boolean bind;
 
     public RawMessageSender(String address) {
         this(address, false);

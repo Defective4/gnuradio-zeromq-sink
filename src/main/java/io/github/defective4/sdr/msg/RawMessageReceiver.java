@@ -15,11 +15,11 @@ import org.zeromq.ZMQ.Socket;
 public class RawMessageReceiver implements AutoCloseable {
 
     private final String address;
+    private final boolean bind;
     private boolean closed;
     private final ZContext ctx;
     private final List<MessageListener> listeners = new CopyOnWriteArrayList<>();
     private final Socket socket;
-    private final boolean bind;
 
     public RawMessageReceiver(String address) {
         this(address, false);

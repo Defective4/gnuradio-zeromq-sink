@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>io.github.defective4.sdr</groupId>
 	<artifactId>gnuradio-zeromq-sink</artifactId>
-	<version>1.1</version>
+	<version>1.2</version>
 	<name>GNU Radio ZeroMQ Sink</name>
 	<properties>
 		<project.build.sourceEncoding>utf-8</project.build.sourceEncoding>
