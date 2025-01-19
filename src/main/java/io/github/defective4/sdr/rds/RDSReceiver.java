@@ -38,13 +38,6 @@ public class RDSReceiver implements AutoCloseable {
         listeners.add(ls);
     }
 
-    public void reset() {
-        lastRadiotext = null;
-        lastStation = null;
-        storedRadiotext = null;
-        storedStation = null;
-    }
-
     @Override
     public void close() {
         closed = true;
@@ -66,6 +59,13 @@ public class RDSReceiver implements AutoCloseable {
 
     public void removeListener(RDSListener ls) {
         listeners.remove(ls);
+    }
+
+    public void reset() {
+        lastRadiotext = null;
+        lastStation = null;
+        storedRadiotext = null;
+        storedStation = null;
     }
 
     public void setAllowDuplicateRadiotextUpdates(boolean allowDuplicateRadiotextUpdates) {
@@ -120,8 +120,14 @@ public class RDSReceiver implements AutoCloseable {
                         listeners.forEach(ls -> ls.clockUpdated(str));
                         break;
                     }
-                    default:
+                    case 3: {
+                        RDSFlags flags = RDSFlags.parse(str);
+                        listeners.forEach(ls -> ls.flagsUpdated(flags));
                         break;
+                    }
+                    default: {
+                        break;
+                    }
                 }
             }
 
