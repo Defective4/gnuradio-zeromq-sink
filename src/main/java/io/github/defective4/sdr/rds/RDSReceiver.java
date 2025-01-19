@@ -38,6 +38,13 @@ public class RDSReceiver implements AutoCloseable {
         listeners.add(ls);
     }
 
+    public void reset() {
+        lastRadiotext = null;
+        lastStation = null;
+        storedRadiotext = null;
+        storedStation = null;
+    }
+
     @Override
     public void close() {
         closed = true;
